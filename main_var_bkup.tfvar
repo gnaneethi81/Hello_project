@@ -1,0 +1,62 @@
+region  = "eu-west-1"
+env     = "sandbox"
+project = "sphere"
+tags = {
+  env          = "sandbox",
+  created-by   = ""
+  triggered-by = "terraform"
+  project      = ""
+  ou           = "nonprod"
+}
+
+create_ecr_repo = true
+repositories = {
+  cicd-test = {
+    repo_name               = "test"
+    scan_images_on_push     = true
+    image_tag_mutability    = "IMMUTABLE"
+    encryption_type         = "KMS"
+    kms_key                 = ""
+    manage_repo_permissions = true
+    sid = "sandbox_account"
+    principals_arn = [
+    
+       "arn:aws:iam::9999999:root"
+    ]
+    principals_actions = [
+      "ecr:BatchCheckLayerAvailability",
+      "ecr:BatchGetImage",
+      "ecr:CompleteLayerUpload",
+      "ecr:DescribeImages",
+      "ecr:GetDownloadUrlForLayer",
+      "ecr:InitiateLayerUpload",
+      "ecr:PutImage",
+      "ecr:UploadLayerPart"
+  ]
+}
+
+dev_test = {
+    repo_name               = "test2"
+    scan_images_on_push     = true
+    image_tag_mutability    = "IMMUTABLE"
+    encryption_type         = "KMS"
+    kms_key                 = ""
+    manage_repo_permissions = true
+    sid = "sandbox_account"
+    principals_arn = [
+    
+       "arn:aws:iam::9999999:root"
+    ]
+    principals_actions = [
+      "ecr:BatchCheckLayerAvailability",
+      "ecr:BatchGetImage",
+      "ecr:CompleteLayerUpload",
+      "ecr:DescribeImages",
+      "ecr:GetDownloadUrlForLayer",
+      "ecr:InitiateLayerUpload",
+      "ecr:PutImage",
+      "ecr:UploadLayerPart"
+  ]
+
+  }
+}
